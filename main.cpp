@@ -12,9 +12,24 @@
 #include <QDataStream>
 #include <QDebug>
 #include <vector>
+//###########################################################################
+// Объяснение
+//     Заголовки и пространства имен:
 
+//                                     QCoreApplication для консольного приложения.
+//                                     QFile для обработки файлов.
+//                                     QDataStream для сериализации двоичных данных.
+//                                     vector для std::vector контейнера.
+//                                     algorithm для сравнения.
+//###########################################################################
 // Function to write a vector to a file
-void writeVectorToFile(const std::vector<unsigned long long>& vec, const QString& filename) {
+// writeVectorToFile:
+
+//                     Открывает файл в режиме только для записи.
+//                     Использует QDataStream для сериализации размера и элементов вектора.
+//                     Обрабатывает ошибки, если файл не может быть открыт.
+void writeVectorToFile(const std::vector<unsigned long long>& vec, const QString& filename)
+{
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly)) {
         qCritical() << "Could not open file for writing:" << filename;
@@ -30,8 +45,14 @@ void writeVectorToFile(const std::vector<unsigned long long>& vec, const QString
 
     file.close();
 }
-
+//###########################################################################
 // Function to read a vector from a file
+// readVectorFromFile:
+
+//                      Открывает файл в режиме только для чтения.
+//                      Использует QDataStream для десериализации размера и элементов вектора.
+//                      Обрабатывает ошибки, если файл не может быть открыт.
+
 std::vector<unsigned long long> readVectorFromFile(const QString& filename) {
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
@@ -54,8 +75,11 @@ std::vector<unsigned long long> readVectorFromFile(const QString& filename) {
     file.close();
     return vec;
 }
-
+//###########################################################################
 // Function to compare two vectors
+// Сравнительные векторы:
+
+//                         Сравнивает два вектора, используя оператор равенства (==).
 bool compareVectors(const std::vector<unsigned long long>& vec1, const std::vector<unsigned long long>& vec2) {
     return vec1 == vec2;
 }
@@ -69,6 +93,12 @@ void printVector(const std::vector<unsigned long long>& vec) {
 
 
 //###########################################################################
+// Главная:
+
+//           Создает пример вектора unsigned long long значений.
+//           Записывает его в файл.
+//           Считывает его обратно из файла.
+//           Проверяет, идентичны ли исходный и прочитанный векторы.
 int main(int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
 
