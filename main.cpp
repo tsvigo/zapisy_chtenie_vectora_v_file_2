@@ -22,7 +22,7 @@
 //                                     vector для std::vector контейнера.
 //                                     algorithm для сравнения.
 //###########################################################################
-// Function to write a vector to a file
+// 1.) Function to write a vector to a file
 // writeVectorToFile:
 
 //                     Открывает файл в режиме только для записи.
@@ -46,14 +46,15 @@ void writeVectorToFile(const std::vector<unsigned long long>& vec, const QString
     file.close();
 }
 //###########################################################################
-// Function to read a vector from a file
+// 2.) Function to read a vector from a file
 // readVectorFromFile:
 
 //                      Открывает файл в режиме только для чтения.
 //                      Использует QDataStream для десериализации размера и элементов вектора.
 //                      Обрабатывает ошибки, если файл не может быть открыт.
 
-std::vector<unsigned long long> readVectorFromFile(const QString& filename) {
+std::vector<unsigned long long> readVectorFromFile(const QString &filename)
+{
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly)) {
         qCritical() << "Could not open file for reading:" << filename;
@@ -76,7 +77,7 @@ std::vector<unsigned long long> readVectorFromFile(const QString& filename) {
     return vec;
 }
 //###########################################################################
-// Function to compare two vectors
+// 3.) Function to compare two vectors
 // Сравнительные векторы:
 
 //                         Сравнивает два вектора, используя оператор равенства (==).
@@ -84,7 +85,7 @@ bool compareVectors(const std::vector<unsigned long long>& vec1, const std::vect
     return vec1 == vec2;
 }
 //###########################################################################
-// Function to print the contents of a vector
+// 4.)  Function to print the contents of a vector
 void printVector(const std::vector<unsigned long long>& vec) {
     for (unsigned long long value : vec) {
         qDebug() << value;
